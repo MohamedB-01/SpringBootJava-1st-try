@@ -18,16 +18,9 @@ import java.util.List;
 
 public class User {
     @Id
-
     private int userId;
     private String username;
     private String password;
-//    @OneToMany(cascade = CascadeType.ALL, targetEntity = Order.class)
-//    @JoinColumn(name = "from_user_id")
-//    private List<Order> orderList;
-//
-//    @OneToOne(cascade = CascadeType.ALL, targetEntity = Cart.class)
-//    @JoinColumn(name = "from_user_id")
-//    private List<Order> cartList;
+
 
 }

@@ -8,10 +8,14 @@ public interface UserService {
     public boolean addUser(User user);
     public boolean deleteUser(int userId);
     public boolean updateUser(User user);
-    public User getUser(int userId);
-    public boolean doesUserExists(int userId);
+    public int getUserId(int userId);
+
+   public User getUserById(int userId);
+
+    public boolean isUserExists(int userId);
     public List<User> getUser(String username);
     public List<User> getUsers();
+    public boolean isUsernameAndPasswordCorrect(String username, String password);
 
 
 }

@@ -23,5 +23,5 @@ public class Item {
     @Id
     private int itemId;
     private String itemName;
-    private int price;
+    private double price;
 }
