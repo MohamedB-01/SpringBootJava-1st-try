@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,13 +17,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table
+@Table(name= "item", schema = "public")
+
 
 
 
 public class Item {
     @Id
     private int itemId;
+    private int cartId;
     private String itemName;
     private double price;
 }

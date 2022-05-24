@@ -44,7 +44,7 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public List<Item> getItembyCartId(int cartId) {
-        return itemDAO.findAll(cartId);
+        return itemDAO.findByCartId(cartId);
     }
 
 

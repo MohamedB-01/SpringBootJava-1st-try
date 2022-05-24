@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table
+@Table(name = "user", schema = "public")
+
 
 public class User {
     @Id

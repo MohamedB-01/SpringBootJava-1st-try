@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ItemDAO extends JpaRepository<Item, Integer> {
-
-    List<Item> findAll(int cartId);
+//    @Query("SELECT i FROM Item i WHERE i.cartId = ?1")
+    List <Item> findByCartId(int cartId);
 }

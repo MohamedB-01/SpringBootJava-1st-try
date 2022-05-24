@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,8 +14,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table
-@EntityListeners(AuditingEntityListener.class)
+@Table(name = "order", schema= "public" )
+
+@Component
 
 public class Order {
     @Id
