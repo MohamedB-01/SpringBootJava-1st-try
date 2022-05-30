@@ -13,9 +13,11 @@ public interface UserService {
    public User getUserById(int userId);
 
     public boolean isUserExists(int userId);
-    public List<User> getUser(String username);
+    public User getUserByUsername(String username);
     public List<User> getUsers();
     public boolean isUsernameAndPasswordCorrect(String username, String password);
+
+    boolean isUsernameExist(String username);
 
 
 }

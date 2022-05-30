@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class Item {
     @Id
     private int itemId;
-    private int cartId;
     private String itemName;
     private double price;
+    private int cartId;
 }

@@ -29,15 +29,15 @@ public class UserController {
         ResponseEntity responseEntity = null;
         if (userService.isUserExists(user.getUserId())) {
             responseEntity = new ResponseEntity<String>
-                    ("user already exists", HttpStatus.CONFLICT);   //409
+                    ("user already exists", HttpStatus.CONFLICT);
         }else {
             boolean result = userService.addUser(user);
             if (result) {
                 responseEntity = new ResponseEntity<String>
-                        ("Successfully Saved User " + user.getUsername(), HttpStatus.OK);        //200
+                        ("Successfully Saved User " + user.getUsername(), HttpStatus.OK);
             } else {
                 responseEntity = new ResponseEntity<String>
-                        ("Cannot save User", HttpStatus.NOT_ACCEPTABLE);        //406
+                        ("Cannot save User", HttpStatus.NOT_ACCEPTABLE);
             }
 
         }
@@ -82,6 +82,58 @@ public class UserController {
                     ("User does not exist ", HttpStatus.NOT_FOUND);
         }
         return responseEntity;
+    }
+
+    //Search user by userId
+    @GetMapping("/findUserById/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable("userId") int userId) {
+        System.out.println("Fetching details about user by with id  :" + userId);
+
+        ResponseEntity responseEntity = null;
+        User user = new User();
+        if (userService.isUserExists(userId)) {
+            user = userService.getUserById(userId);
+            responseEntity = new ResponseEntity<User>(user, HttpStatus.OK);
+        } else {
+            responseEntity = new ResponseEntity<String>
+                    ("User does not exist ", HttpStatus.NOT_FOUND);
+        }
+        return responseEntity;
+    }
+
+    //Search by username
+    @GetMapping("/findUserByUsername/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) {
+        System.out.println("Fetching details about  user with username  :" + username);
+
+        ResponseEntity responseEntity = null;
+        User user = new User();
+        if (userService.isUsernameExist(username)) {
+            user = userService.getUserByUsername(username);
+            responseEntity = new ResponseEntity<User>(user, HttpStatus.OK);
+        } else {
+            responseEntity = new ResponseEntity<String>
+                    ("User does not exist ", HttpStatus.NOT_FOUND);
+        }
+        return responseEntity;
+
+    }
+
+    @GetMapping("/findUserByUsernameAndPassword/{username}/and/{password}")
+    public ResponseEntity<User> getUserByUsernameAndPassword(@PathVariable("username") String username, @PathVariable("password") String password) {
+        System.out.println("Fetching details about  user with username: " + username + "and password: " + password);
+
+        ResponseEntity responseEntity = null;
+        User user = new User();
+        if (userService.isUsernameAndPasswordCorrect(username, password)) {
+            user = userService.getUserByUsername(username);
+            responseEntity = new ResponseEntity<User>(user, HttpStatus.OK);
+        } else {
+            responseEntity = new ResponseEntity<String>
+                    ("Either username or password are incorrect ", HttpStatus.NOT_FOUND);
+        }
+        return responseEntity;
+
     }
 
 

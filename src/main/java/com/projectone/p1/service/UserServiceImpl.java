@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> getUser(String username) {
+    public User getUserByUsername(String username) {
         return userDAO.findByUsername(username);
     }
 
@@ -65,6 +65,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean isUsernameAndPasswordCorrect(String username, String password) {
         if (userDAO.findByUsernameAndPassword(username, password ) == null) return false;
+        else return true;
+    }
+
+    @Override
+    public boolean isUsernameExist(String username) {
+        if (userDAO.findByUsername(username) == null) return false;
         else return true;
     }
 }
