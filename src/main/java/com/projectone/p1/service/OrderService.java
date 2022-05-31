@@ -11,6 +11,8 @@ public interface OrderService {
     public boolean updateOrder(Order order);
     public Order getOrderById(int orderId);
     public boolean doesOrderExists(int orderId);
+    public boolean doesUserIdExists(int userId);
     public List<Order> getOrderByUserId(int userId);
+
 
 }

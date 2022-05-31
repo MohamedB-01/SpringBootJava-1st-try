@@ -49,4 +49,9 @@ public class CartServiceImpl implements CartService{
         Cart cart = cartDAO.getById(userId);
         return cart;
     }
+
+    @Override
+    public boolean doesUserIdExists(int userId) {
+        return cartDAO.existsById(userId);
+    }
 }
