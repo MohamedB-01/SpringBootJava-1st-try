@@ -9,22 +9,27 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "cart", schema = "public")
+@Table(name = "cart", schema = "project")
 
 //@EntityListeners(AuditingEntityListener.class)
 
 public class Cart {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int cartId;
-    private int itemId;
-    private int userId;
-
+    @ManyToMany
+    @JoinColumn(name= "itemId")
+    private List<Item> cartItems;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
 
 }

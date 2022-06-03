@@ -100,21 +100,21 @@ public class CartController {
         return responseEntity;
     }
 
-    @GetMapping("/findCartByUserId/{userId}")
-    public ResponseEntity<Cart> getCartByUserId(@PathVariable("userId") int userId) {
-        System.out.println("Fetching details about cart with userId  :" + userId);
-
-        ResponseEntity responseEntity = null;
-        Cart cart = new Cart();
-        if (cartService.doesUserIdExists(userId)) {
-            cart = cartService.getCartbyUserId(userId);
-            responseEntity = new ResponseEntity<Cart>(cart, HttpStatus.OK);
-        } else {
-            responseEntity = new ResponseEntity<String>
-                    ("User Id does not exist ", HttpStatus.NOT_FOUND);
-        }
-        return responseEntity;
-    }
+//    @GetMapping("/findCartByUserId/{userId}")
+//    public ResponseEntity<Cart> getCartByUserId(@PathVariable("userId") int userId) {
+//        System.out.println("Fetching details about cart with userId  :" + userId);
+//
+//        ResponseEntity responseEntity = null;
+//        Cart cart = new Cart();
+//        if (cartService.doesUserIdExists(userId)) {
+//            cart = cartService.getCartbyUserId(userId);
+//            responseEntity = new ResponseEntity<Cart>(cart, HttpStatus.OK);
+//        } else {
+//            responseEntity = new ResponseEntity<String>
+//                    ("User Id does not exist ", HttpStatus.NOT_FOUND);
+//        }
+//        return responseEntity;
+//    }
 
 
 

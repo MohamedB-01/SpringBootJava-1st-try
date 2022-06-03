@@ -6,26 +6,29 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name= "item", schema = "public")
+@Table(name= "item", schema = "project")
 
 
 
 
 public class Item {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int itemId;
     private String itemName;
     private double price;
-    private int cartId;
+//    @ManyToMany
+//    @JoinColumn(name = "cartId")
+//    private Cart cart;
+
+
 }

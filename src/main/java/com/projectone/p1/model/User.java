@@ -15,14 +15,16 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "user", schema = "public")
+@Table(name = "user", schema = "project")
 
 
 public class User {
     @Id
-    @Column(name = "user_id")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int userId;
     private String username;
     private String password;
+    @OneToMany(mappedBy = "user")
+    private List<Cart> carts;
 
 }

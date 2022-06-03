@@ -11,7 +11,7 @@ public interface CartService {
     public boolean updateCart(Cart cart);
     public Cart getCart(int cartId);
     public boolean doesCartExists(int cartId);
-    public Cart getCartbyUserId(int userId);
+    public List <Cart> getCartbyUser(User user);
     boolean doesUserIdExists(int userId);
 
 }

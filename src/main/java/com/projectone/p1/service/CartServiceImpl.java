@@ -3,6 +3,7 @@ package com.projectone.p1.service;
 import com.projectone.p1.dao.CartDAO;
 import com.projectone.p1.dao.UserDAO;
 import com.projectone.p1.model.Cart;
+import com.projectone.p1.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,9 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public Cart getCartbyUserId(int userId) {
-        Cart cart = cartDAO.getById(userId);
-        return cart;
+    public List<Cart> getCartbyUser(User user) {
+
+        return cartDAO.findByUser(user);
     }
 
     @Override

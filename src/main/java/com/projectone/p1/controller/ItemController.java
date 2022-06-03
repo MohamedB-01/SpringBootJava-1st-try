@@ -65,7 +65,7 @@ public class ItemController {
     }
 
     @PutMapping("{itemId}")
-    public ResponseEntity<User> updateUser(@RequestBody Item item){
+    public ResponseEntity<Item> updateItem(@RequestBody Item item){
         ResponseEntity responseEntity = null;
         if (itemService.doesItemExists(item.getItemId())){
             boolean result = itemService.updateItem(item);
@@ -84,7 +84,7 @@ public class ItemController {
     }
 
     @GetMapping("/findItemById/{itemId}")
-    public ResponseEntity<User> getUserById(@PathVariable("itemId") int itemId) {
+    public ResponseEntity<Item> getItemById(@PathVariable("itemId") int itemId) {
         System.out.println("Fetching details about item by with id  :" + itemId);
 
         ResponseEntity responseEntity = null;
@@ -99,11 +99,6 @@ public class ItemController {
         return responseEntity;
     }
 
-    @GetMapping("/searchCartItems/{cartId}")
-    public List<Item> searchCartItems(@PathVariable("cartId") int cartId) {
 
-        List<Item> cartItems = itemService.getItembyCartId(cartId);
-        return cartItems;
-    }
 
 }

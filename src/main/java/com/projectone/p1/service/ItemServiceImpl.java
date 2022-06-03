@@ -2,6 +2,7 @@ package com.projectone.p1.service;
 
 import com.projectone.p1.dao.ItemDAO;
 import com.projectone.p1.dao.UserDAO;
+import com.projectone.p1.model.Cart;
 import com.projectone.p1.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,10 +43,10 @@ public class ItemServiceImpl implements ItemService{
         return itemDAO.existsById(itemId);
     }
 
-    @Override
-    public List<Item> getItembyCartId(int cartId) {
-        return itemDAO.findByCartId(cartId);
-    }
+//    @Override
+//    public List<Item> getItembyCart(Cart cart) {
+//        return itemDAO.findByCart(cart);
+//    }
 
 
 
