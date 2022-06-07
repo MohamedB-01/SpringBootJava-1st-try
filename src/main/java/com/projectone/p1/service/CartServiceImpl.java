@@ -1,6 +1,7 @@
 package com.projectone.p1.service;
 
 import com.projectone.p1.dao.CartDAO;
+import com.projectone.p1.dao.ItemDAO;
 import com.projectone.p1.dao.UserDAO;
 import com.projectone.p1.model.Cart;
 import com.projectone.p1.model.User;
@@ -16,6 +17,8 @@ public class CartServiceImpl implements CartService{
     private static final Logger LOGGER = LoggerFactory.getLogger(CartServiceImpl.class);
     @Autowired
     CartDAO cartDAO;
+    @Autowired
+    ItemDAO itemDAO;
     @Override
     public boolean addCart(Cart cart) {
         cartDAO.save(cart);
@@ -54,5 +57,12 @@ public class CartServiceImpl implements CartService{
     @Override
     public boolean doesUserIdExists(int userId) {
         return cartDAO.existsById(userId);
+    }
+
+    @Override
+    public boolean addItemToCart(int itemId) {
+        Cart cart = new Cart();
+        cart.getCartItems().add(itemDAO.getById(itemId));
+        return true;
     }
 }

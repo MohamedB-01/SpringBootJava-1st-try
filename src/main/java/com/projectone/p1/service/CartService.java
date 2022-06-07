@@ -13,5 +13,6 @@ public interface CartService {
     public boolean doesCartExists(int cartId);
     public List <Cart> getCartbyUser(User user);
     boolean doesUserIdExists(int userId);
+    boolean addItemToCart(int itemId);
 
 }

@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.List;
 @Service
@@ -16,6 +18,8 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     UserDAO userDAO;
+    @Autowired
+    HttpServletRequest req;
     @Override
     public boolean addUser(User user) {
         userDAO.save(user);
@@ -72,5 +76,21 @@ public class UserServiceImpl implements UserService{
     public boolean isUsernameExist(String username) {
         if (userDAO.findByUsername(username) == null) return false;
         else return true;
+    }
+
+    @Override
+    public User login(String username, String password) {
+        User user = userDAO.findByUsernameAndPassword(username, password);
+        HttpSession session = req.getSession();
+        session.setAttribute("currentUser", user);
+        return user;
+    }
+
+    @Override
+    public void logout() {
+        HttpSession session = req.getSession(false);
+        if(session == null) return;
+        session.invalidate();
+
     }
 }

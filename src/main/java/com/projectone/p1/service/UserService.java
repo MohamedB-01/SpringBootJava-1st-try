@@ -18,6 +18,8 @@ public interface UserService {
     public boolean isUsernameAndPasswordCorrect(String username, String password);
 
     boolean isUsernameExist(String username);
+    User login (String username, String password);
+    void logout();
 
 
 }

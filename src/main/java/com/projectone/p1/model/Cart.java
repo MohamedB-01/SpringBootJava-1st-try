@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -18,18 +20,20 @@ import java.util.List;
 @Entity
 @Table(name = "cart", schema = "project")
 
-//@EntityListeners(AuditingEntityListener.class)
+
 
 public class Cart {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int cartId;
     @ManyToMany
-    @JoinColumn(name= "itemId")
+    @JoinTable(name = "cartItems",
+            joinColumns = @JoinColumn(name = "cartId", referencedColumnName = "cartId"),
+            inverseJoinColumns = @JoinColumn(name = "itemId", referencedColumnName = "itemId"))
     private List<Item> cartItems;
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name= "user_Id")
     private User user;
-
+    private double cartTotal;
 
 }
