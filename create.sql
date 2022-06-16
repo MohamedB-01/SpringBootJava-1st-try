@@ -1,0 +1,41 @@
+
+    create table project.cart (
+       cart_id  serial not null,
+        cart_total float8 not null,
+        user_id int4,
+        primary key (cart_id)
+    );
+
+    create table project.item (
+       item_id int4 not null,
+        item_name varchar(255),
+        price float8 not null,
+        primary key (item_id)
+    );
+
+    create table project.user (
+       user_id  serial not null,
+        password varchar(255),
+        username varchar(255),
+        primary key (user_id)
+    );
+
+    create table cart_items (
+       cart_id int4 not null,
+        item_id int4 not null
+    );
+
+    alter table project.cart 
+       add constraint FKl70asp4l4w0jmbm1tqyofho4o 
+       foreign key (user_id) 
+       references project.user;
+
+    alter table cart_items 
+       add constraint FK8e7xlm8now8keg2awxfim0b1a 
+       foreign key (item_id) 
+       references project.item;
+
+    alter table cart_items 
+       add constraint FK99e0am9jpriwxcm6is7xfedy3 
+       foreign key (cart_id) 
+       references project.cart;
