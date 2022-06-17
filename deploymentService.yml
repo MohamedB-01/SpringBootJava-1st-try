@@ -15,6 +15,29 @@ spec:
         containers:
         - name: project1
           image: mbdocker001/project1:latest
+          ports:
+            - containerPort: 8084
+          env: # Setting Enviornmental Variables
+            - name: DB_HOST   # Setting Database host address from configMap
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf  # name of configMap
+                  key: host
+            - name: DB_NAME  # Setting Database name from configMap
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf
+                  key: name
+            - name: POSTGRES_USER  # Setting Database username from Secret
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials # Secret Name
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD # Setting Database password from Secret
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: postgres_password
 ---
 apiVersion: v1
 kind: Service
@@ -27,6 +50,6 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    port: 8085
+    port: 8084
     nodePort: 30020
  
